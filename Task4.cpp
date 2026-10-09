@@ -1,42 +1,54 @@
-#include <iostream>
+	#include <iostream>
 
-using namespace std;
+	using namespace std;
 
-int main() 
-{
-	char mode;
-	int day, month, year;
-	bool is_leap_year;
+	int main() 
+	{
+		char mode;
+		int day, month, year;
+		bool is_leap_year;
 
-	cout << "Выберите мод N или D: ";
-	cin >> mode;
+		cout << "Выберите мод N или D: ";
+		cin >> mode;
 
-	switch (mode) {
-		case 'N':
+		switch (mode) {
+		case 'N': {
 			int next_day, next_month, next_year;
 
 			cout << "Введите номер день, месяца и год: ";
 			cin >> day >> month >> year;
 
-			if (year < 0 || month < 1 || month > 12 || (month % 2 == 0 && day > 31) || (month % 2 == 1 && day > 30)) {
-				cout << "Invalid date"; 
+			if (year <= 0 || month < 1 || month > 12) {
+				cout << "Invalid date";
 				return 1;
 			}
 
 			is_leap_year = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
-			
+
+			int days_in_month;
+
+			switch (month) {
+			case 2:
+				days_in_month = is_leap_year ? 29 : 28;
+				break;
+			case 4: case 6: case 9: case 11:
+				days_in_month = 30;
+				break;
+			default:
+				days_in_month = 31;
+				break;
+			}
+
+			if (day <= 0 || day > days_in_month) {
+				cout << "Invalid date";
+				return 1;
+			}
+
+
 			next_month = month;
 			next_year = year;
 
-			if (is_leap_year && month == 2 && day == 29) {
-				next_day = 1;
-				next_month = month + 1;
-			}
-			else if (!is_leap_year && month == 2 && day == 28) {
-				next_day = 1;
-				next_month = month + 1;
-			}
-			else if (month % 2 == 0 && day == 31)
+			if (day == days_in_month)
 			{
 				if (month < 12)
 				{
@@ -50,48 +62,46 @@ int main()
 					next_year = year + 1;
 				}
 			}
-			else if (month % 2 == 1 && day == 30) {
-				next_day = 1;
-				next_month = month + 1;
-			}
-			else
-			{
+			else {
 				next_day = day + 1;
 			}
 			cout << "Следующая дата: " << next_day << "." << next_month << "." << next_year;
 
-			break;	
-		case 'D':
+			break;
+		}
+		case 'D': {
 
 			cout << "Введите номер месяца и год: ";
 			cin >> month >> year;
 
-			if (year < 0 || month < 1 || month > 12) {
+			if (year <= 0 || month < 1 || month > 12) {
 				cout << "Invalid date";
 				return 1;
 			}
 
 			is_leap_year = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 
-			if (is_leap_year && month == 2) {
-				cout << "Valid date \n";
-				cout << "Дней в месяце: 29";
+			int days_in_month;
+
+			switch (month) {
+			case 2:
+				days_in_month = is_leap_year ? 29 : 28;
+				break;
+			case 4: case 6: case 9: case 11:
+				days_in_month = 30;
+				break;
+			default:
+				days_in_month = 31;
+				break;
 			}
-			else if (!is_leap_year && month == 2) {
-				cout << "Valid date \n";
-				cout << "Дней в месяце: 28";
-			}
-			else if (month % 2 == 0) {
-				cout << "Valid date \n";
-				cout << "Дней в месяце: 31";
-			}
-			else {
-				cout << "Valid date \n";
-				cout << "Дней в месяце: 30";
-			}
+
+
+			cout << "valid date \n";
+			cout << days_in_month;
 			break;
-		default:
-			cout << "Неизвестный код операции";
-			return 1;
+		}
+			default:
+				cout << "Неизвестный код операции";
+				return 1;
+		}
 	}
-}

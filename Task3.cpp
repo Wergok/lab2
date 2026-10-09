@@ -18,7 +18,7 @@ int main() {
 	switch (month) {
 		case 1:
 			cout << "Это зима! \n";
-			cout << "Дней в месяце: 30";
+			cout << "Дней в месяце: 31";
 			break;
 		case 2:
 			cout << "Это зима! \n";
@@ -37,19 +37,19 @@ int main() {
 			break;
 		case 4:
 			cout << "Это весна! \n";
-			cout << "Дней в месяце: 31";
+			cout << "Дней в месяце: 30";
 			break;
 		case 5:
 			cout << "Это весна! \n";
-			cout << "Дней в месяце: 30";
+			cout << "Дней в месяце: 31";
 			break;
 		case 6:
 			cout << "Это лето! \n";
-			cout << "Дней в месяце: 31";
+			cout << "Дней в месяце: 30";
 			break;
 		case 7:
 			cout << "Это лето! \n";
-			cout << "Дней в месяце: 30";
+			cout << "Дней в месяце: 31";
 			break;
 		case 8:
 			cout << "Это лето! \n";

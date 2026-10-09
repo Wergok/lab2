@@ -9,7 +9,7 @@ int main()
 	cout << "Введите год: ";
 	cin >> year;
 
-	if (year < 0) {
+	if (year <= 0) {
 		cout << "Год должен быть положительным";
 		return 1;
 	}
